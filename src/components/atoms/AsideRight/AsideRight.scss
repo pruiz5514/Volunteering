@@ -1,0 +1,40 @@
+.aside_right-container{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    top: 0;
+    left: 0;
+
+    .background-aside_right{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: calc(100% - 260px);
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .aside_right_content-container{
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 260px;
+        height: 100vh;
+        background-color: $white;
+        padding: 50px 10px;
+
+        .aside_right-close_button{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 25px;
+        }
+    }
+}
+
+@media (min-width: 700px){
+    .aside_right-container{
+        display: none;
+    }
+}
