@@ -10,7 +10,7 @@ interface IPropsFormField<T extends FieldValues> {
     type: string;
     name: Path<T>;
     control?: Control<T>;
-    error?: FieldError;
+    error?: FieldError ;
     id?: string;
     placeholder?: string;
   }

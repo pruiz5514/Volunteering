@@ -7,7 +7,6 @@ const LoginTemplate = () => {
       <div className='login_form-container'>
         <LoginForm/>
       </div>
-        
     </div>
   )
 }

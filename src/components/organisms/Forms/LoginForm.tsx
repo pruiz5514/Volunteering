@@ -1,11 +1,13 @@
 "use client";
 
 import { ILoginRequest } from '@/app/core/application/dto/auth/login-request.dto';
+import { RegisterService } from '@/app/infrastructure/services/register.service';
 import Button from '@/components/atoms/Button/Button'
 import Form from '@/components/atoms/Form/Form'
 import H1 from '@/components/atoms/H1/H1'
 import FormFiled from '@/components/molecules/common/FormField/FormField';
 import { yupResolver } from '@hookform/resolvers/yup'
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -22,7 +24,8 @@ const LoginSchema = yup.object()
             .required('La contreseña es obligatoria'),
     })
 
-const ClientsForm = () => {
+
+const LoginForm = () => {
 
   const {
     control,
@@ -38,8 +41,22 @@ const ClientsForm = () => {
   const router = useRouter();
 
   const handleLogin = async (data:ILoginRequest)=>{
-    console.log(data)
+    try{
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password
+      })
+      if(result?.status === 401){
+        alert('Credenciales invalidas')
+        return
+      }
+      router.push('/dashboard/projects')
+    }catch(error){
+      console.log(error)
+    }
   }
+  
 
   return (
     <Form onSubmit={handleSubmit(handleLogin)}>
@@ -67,4 +84,4 @@ const ClientsForm = () => {
   )
 }
 
-export default ClientsForm
+export default LoginForm

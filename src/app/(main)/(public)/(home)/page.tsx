@@ -6,8 +6,8 @@ export default function Home() {
     return (
       <>
         <Header leftSectionContent = {<h2 className='header_left-content'>VolunteerConnect</h2>}>
-          <li><a href="">Iniciar sesión</a></li>
-          <li><a href=""><Button className='dark-button'>Registrase</Button></a></li>
+          <li><a href="/login">Iniciar sesión</a></li>
+          <li><a href="/register"><Button className='dark-button'>Registrase</Button></a></li>
         </Header>
 
         <main className='home-main'>
