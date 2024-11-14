@@ -1,7 +1,20 @@
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { ProjectsService } from '@/app/infrastructure/services/projects.service'
+import ProjectsTemplate from '@/components/template/dashboard/ProjectsTemplate/ProjectsTemplate'
+import { getServerSession } from 'next-auth';
 import React from 'react'
 
-export default function page() {
+const useProjectsService = new ProjectsService();
+export default async function page() {
+
+  const session = await getServerSession(authOptions);
+  console.log(session?.user);
+
+  const projects = await useProjectsService.findAllProjects('projects')
+
   return (
-    <div>page</div>
+    <div>
+      <ProjectsTemplate projects={projects.data}/>
+    </div>
   )
 }

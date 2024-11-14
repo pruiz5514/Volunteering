@@ -67,9 +67,9 @@ export class HttpClient {
       "Content-Type" : "application/json"
     };
 
-    // if(session && session.user?.token){
-    //   headers['Authorization'] = `Bearer ${session.user?.token}`
-    // }
+    if(session && session.user?.token){
+      headers['Authorization'] = `Bearer ${session.user?.token}`
+    }
 
     if(searchParams){
       const order = searchParams.order;
