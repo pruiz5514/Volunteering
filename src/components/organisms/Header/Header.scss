@@ -44,6 +44,17 @@ header{
     }
 }
 
+.header-private{
+    background-color: $white;
+    box-shadow: $box-shadow;
+    height: 90px;
+
+    .header_private_left-content{
+        color: $black;
+        font-weight: bold;
+    }
+}
+
 @media (min-width: 700px){
     header{
         padding: 0 50px;
@@ -61,5 +72,9 @@ header{
             width: 50%;
             justify-content: end;
         }
+    }
+
+    .header-private{
+        padding: 0 20px;
     }
 }

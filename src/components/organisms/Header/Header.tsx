@@ -8,18 +8,19 @@ import { useState } from 'react';
 interface IHeaderProps{
     leftSectionContent?: React.ReactNode;
     children:  React.ReactNode;
+    classname?: string
 }
 
 
 
-const Header: React.FC<IHeaderProps> = ({children, leftSectionContent}) => {
+const Header: React.FC<IHeaderProps> = ({children, leftSectionContent, classname}) => {
   const [aside, setAside] = useState(false);
 
   const openAside = ()=> setAside(true)
   const closeAside = ()=> setAside(false)
 
   return (
-    <header>
+    <header className={classname}>
         <div className='left_section-header'>
             {leftSectionContent}
             <button onClick={openAside} className='burger-icon'><RxHamburgerMenu /></button>

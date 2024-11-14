@@ -1,0 +1,45 @@
+.aside-left{
+    width: 260px;
+    height: 100vh;
+    background-color: $white;
+    position: absolute;
+    padding: 25px 20px;
+    box-shadow: $box-shadow;
+    color: $black;
+
+    .left_aside-h1{
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .close-aside_left{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+    }
+
+    .list-aside_left{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        font-size: 18px;
+
+        .li-aside_left, .li-aside_left a{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+}
+
+@media (min-width: 1200px){
+    .aside-left{
+        .close-aside_left{
+            display: none;
+        }
+    }
+}
