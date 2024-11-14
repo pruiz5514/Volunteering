@@ -7,6 +7,7 @@ import { IoDocumentTextOutline } from 'react-icons/io5'
 import { IoMdAddCircleOutline } from 'react-icons/io'
 import Modal from '@/components/atoms/Modal/Modal'
 import ProjectsForm from '../Forms/ProjectsForm';
+import Account from '@/components/molecules/Account/Account';
 
 const HeaderPrivate = () => {
 
@@ -18,6 +19,7 @@ const HeaderPrivate = () => {
     <Header classname='header-private' leftSectionContent = {<h2 className='header_private_left-content'>Dashboard de proyectos</h2>}>
           <li><Button className='dark-button'><IoDocumentTextOutline /> Descargar reporte</Button></li>
           <li><Button className='dark-button' onClick={()=>setModal(true)}><IoMdAddCircleOutline /> Nuevo Proyecto</Button></li>
+          <li><Account/></li>
 
           {modal && 
             <Modal propFunction={closeModal}>

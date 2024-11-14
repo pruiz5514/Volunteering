@@ -6,22 +6,26 @@ import CredentialsProvider from "next-auth/providers/credentials";
 interface AuthToken {
   id?: string;
   token?: string;
+  role?: string;
+  photo?: string;
 }
 
 interface AuthUser {
   id: string ;
-  name: string;
   email: string;
   token: string;
+  photo: string;
+  role: string
 }
 
 interface CustomSession extends Session {
   user: {
     id?: string;
     token?: string;
-    name?: string | null;
     email?: string | null;
     image?: string | null;
+    role?: string | null;
+    photo?: string | null;
   };
 }
 
@@ -48,10 +52,12 @@ export const authOptions: NextAuthOptions = {
             const response = await authService.login(loginRequest)
 
             return {
-                email: response.data.user.email,
-                id: loginRequest.email,
-                name: loginRequest.email,
-                token: response.data.access_token
+              email: response.data.user.email,
+              id: response.data.user.sub.toString(),
+              role: response.data.user.role,
+              photo: response.data.user.photo,
+              token: response.data.access_token,
+
             } as AuthUser
 
           } catch(error){
@@ -70,6 +76,8 @@ export const authOptions: NextAuthOptions = {
         const authUser = user as AuthUser;
         token.id = authUser.id;
         token.token = authUser.token;
+        token.photo = authUser.photo;
+        token.role = authUser.role;
       }
       return token;
     },
@@ -77,6 +85,9 @@ export const authOptions: NextAuthOptions = {
       const customSession = session as CustomSession;
       customSession.user.id = (token as AuthToken).id;
       customSession.user.token = (token as AuthToken).token;
+      customSession.user.role = (token as AuthToken).role;
+      customSession.user.photo = (token as AuthToken).photo;
+
       return customSession;
     },
   },

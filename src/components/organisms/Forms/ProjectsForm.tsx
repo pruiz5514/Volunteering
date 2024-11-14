@@ -16,8 +16,8 @@ import * as yup from 'yup'
 
 interface IProjectsForm{
   action:string;
-  projectSelected: IProjectsPost;
-  idProject : number
+  projectSelected?: IProjectsPost;
+  idProject?: number
   propFunction: ()=>void
 }
 
@@ -69,7 +69,7 @@ const ProjectsForm:React.FC<IProjectsForm> = ({action, projectSelected, idProjec
   } 
 
   const handleEdit = async (data:IProjectsPost) =>{
-    await useProjectsService.editProject('projects',idProject, data);
+    await useProjectsService.editProject('projects',idProject!, data);
     propFunction();
     router.refresh();
   }

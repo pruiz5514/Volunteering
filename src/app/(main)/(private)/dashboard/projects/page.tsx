@@ -19,6 +19,8 @@ export default async function page({searchParams}:IProps) {
   const size = searchParams.size ? parseInt(searchParams.size) : 8;
 
   const session = await getServerSession(authOptions);
+  console.log(session);
+  
 
   const projects = await useProjectsService.findAllProjects(`projects?page=${page}&size=${size}`)
 

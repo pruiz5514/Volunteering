@@ -1,0 +1,17 @@
+.account-container{
+    width: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    .account-img{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .name-account{
+        margin-right: 26px;
+    }
+}
