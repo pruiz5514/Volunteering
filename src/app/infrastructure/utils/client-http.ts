@@ -58,6 +58,15 @@ export class HttpClient {
     return this.handleResponse(response)
   }
 
+  async patch <T, B> (url:string, body:B): Promise<T>{
+    const response = await fetch(`${this.baseUrl}/${url}`,{
+        method:"PATCH",
+        body: JSON.stringify(body)
+    });
+
+    return this.handleResponse(response)
+  }
+
   async getHeader({searchParams}: {searchParams?: {order:string}}={}) {
     const session = await getServerSession(authOptions);
 

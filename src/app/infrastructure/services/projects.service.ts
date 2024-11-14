@@ -44,26 +44,16 @@ export class ProjectsService{
         }
     }
 
-    // async findServiceById (url:string, id:string){
-    //     try{
-    //         const serviceById = await this.httpClient.get<IServicesResponse>(`${url}/${id}`);
-    //         return serviceById
-    //     } catch (error){
-    //         console.log(error);
-    //         throw error
-    //     }
-    // }
+    async editProject (url:string, id:number, body:IProjectsPost){
+        try{
+            const projectEdited =  await this.httpClient.patch<IProjectsPostResponse,IProjectsPost>(`${url}/${id}`, body);
+            successAlert('Editado exitosamente');
+            return projectEdited;
 
-    // async editService (url:string, id:string, body:IServicesPost){
-    //     try{
-    //         const serviceEdited =  await this.httpClient.put<IServicesPostResponse,IServicesPost>(`${url}/${id}`, body);
-    //         successAlert('Editado exitosamente');
-    //         return serviceEdited;
+        } catch(error){
+            console.log(error);
+            throw error;
 
-    //     } catch(error){
-    //         console.log(error);
-    //         throw error;
-
-    //     }
-    // }
+        }
+    }
 }

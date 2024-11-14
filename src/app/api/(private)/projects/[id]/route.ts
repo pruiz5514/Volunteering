@@ -30,13 +30,13 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     });
 }
 
-export async function PUT(request: Request, {params} : {params:{id:string}}){
+export async function PATCH(request: Request, {params} : {params:{id:string}}){
     const {id} = params;
     const headers = await useHttpClient.getHeader();
     const body = await request.json();
 
     const response = await fetch(`${url}/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: headers,
         body: JSON.stringify(body)
     })

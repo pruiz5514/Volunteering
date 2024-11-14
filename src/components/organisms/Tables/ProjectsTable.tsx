@@ -34,8 +34,8 @@ const ProjectsTable:React.FC<IProjectsTable> = ({projects}) => {
                     <Tr key={project.id}>
                         <Td>{project.title}</Td>
                         <Td>{project.description}</Td>
-                        <Td>{project.startDate}</Td>
-                        <Td>{project.endDate}</Td>
+                        <Td>{String(project.startDate)}</Td>
+                        <Td>{String(project.endDate)}</Td>
                         <Td>{project.isActive ? 'Activo' : 'Inactivo'}</Td>
                         <Td>{project.organizer.name}</Td>
                         <Td> <TdActions data={project}/> </Td>

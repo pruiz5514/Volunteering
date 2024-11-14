@@ -16,7 +16,8 @@ import * as yup from 'yup'
 
 interface IProjectsForm{
   action:string;
-  clientSelected?: IProjectsData;
+  projectSelected: IProjectsPost;
+  idProject : number
   propFunction: ()=>void
 }
 
@@ -44,7 +45,7 @@ const projectsSchema = yup.object()
 
     })
 
-const ProjectsForm:React.FC<IProjectsForm> = ({action, clientSelected, propFunction}) => {
+const ProjectsForm:React.FC<IProjectsForm> = ({action, projectSelected, idProject, propFunction}) => {
 
   const {
     control,
@@ -55,7 +56,7 @@ const ProjectsForm:React.FC<IProjectsForm> = ({action, clientSelected, propFunct
     mode: "onChange",
     reValidateMode: "onChange",
     resolver: yupResolver(projectsSchema),
-    // defaultValues: clientSelected
+    defaultValues: projectSelected
   })
 
   const router = useRouter();
@@ -67,16 +68,16 @@ const ProjectsForm:React.FC<IProjectsForm> = ({action, clientSelected, propFunct
     router.refresh();
   } 
 
-//   const handleEdit = async (data:IClientsPost) =>{
-//     await useClientsService.editClient('clients',String(clientSelected?.id), data);
-//     propFunction();
-//     router.refresh();
-//   }
+  const handleEdit = async (data:IProjectsPost) =>{
+    await useProjectsService.editProject('projects',idProject, data);
+    propFunction();
+    router.refresh();
+  }
   
-const onSubmit = action === 'add' ? handlePost : '';
+const onSubmit = action === 'add' ? handlePost : handleEdit;
 
   return (
-    <Form onSubmit={handleSubmit(handlePost)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
         <H1>{action === 'add' ? 'Publicar' : 'Editar'} proyecto</H1>
         <FormFiled<IProjectsPost>
             type='text'

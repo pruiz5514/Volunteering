@@ -9,8 +9,8 @@ export interface IProjectsData {
     id:          number;
     title:       string;
     description: string;
-    startDate:   string;
-    endDate:     string;
+    startDate:   Date;
+    endDate:     Date;
     isActive:    boolean;
     organizer:   Organizer;
 }

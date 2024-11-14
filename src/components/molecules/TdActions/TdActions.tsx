@@ -9,6 +9,7 @@ import Modal from '@/components/atoms/Modal/Modal';
 import ProjectsForm from '@/components/organisms/Forms/ProjectsForm';
 import { ProjectsService } from '@/app/infrastructure/services/projects.service';
 import { useRouter } from 'next/navigation';
+import { IProjectsPost } from '@/app/core/application/dto/dashboard/projects/post-projects.dto';
 
 interface ITdActions{
   data: IProjectsData;
@@ -19,6 +20,7 @@ const useProjectsService = new ProjectsService(`${process.env.NEXT_PUBLIC_FRONT_
 const TdActions: React.FC<ITdActions> = ({data}) => {
 
   const [modal, setModal] = useState(false);
+  const [featureSelected, setFeatureSelected] = useState<IProjectsPost>();
 
   const handleCloseModal = ()=> setModal(false);
 
@@ -30,14 +32,25 @@ const TdActions: React.FC<ITdActions> = ({data}) => {
     return projectToDelete
   }
 
+  const handleEdit = () => {
+    setModal(true)
+    const selectedProject = {
+      title: data.title,
+      description: data.description,
+      startDate: data.startDate,
+      endDate : data.endDate
+    }
+    setFeatureSelected(selectedProject)
+   }
+
   return (
     <div className='td_action-container'>
-        <Button onClick={()=>setModal(true)} className='edit-button'>Editar</Button>
+        <Button onClick={handleEdit} className='edit-button'>Editar</Button>
         <Button onClick={()=>handleDelete(data.id)} className='delete-button'>Eliminar</Button>
 
         {modal && 
           <Modal propFunction={handleCloseModal}> 
-              <ProjectsForm action='edit' propFunction={handleCloseModal}/>
+              <ProjectsForm action='edit' idProject={data.id} projectSelected={featureSelected as IProjectsData} propFunction={handleCloseModal}/>
           </Modal>
         }
     </div>
