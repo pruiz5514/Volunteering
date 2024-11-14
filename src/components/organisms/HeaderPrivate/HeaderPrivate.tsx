@@ -21,7 +21,7 @@ const HeaderPrivate = () => {
 
           {modal && 
             <Modal propFunction={closeModal}>
-              <ProjectsForm/>
+              <ProjectsForm action='add' propFunction={closeModal}/>
             </Modal>
           }
           

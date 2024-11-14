@@ -15,9 +15,9 @@ import * as yup from 'yup'
 
 
 interface IProjectsForm{
-  action?:string;
+  action:string;
   clientSelected?: IProjectsData;
-  propFunction?: ()=>void
+  propFunction: ()=>void
 }
 
 const useProjectsService = new ProjectsService(`${process.env.NEXT_PUBLIC_FRONT_HOST}/api`)
@@ -60,20 +60,10 @@ const ProjectsForm:React.FC<IProjectsForm> = ({action, clientSelected, propFunct
 
   const router = useRouter();
 
-  const formatDate = (date:Date) => {
-    return date ? new Date(date).toISOString().split('T')[0] : "";
-  };
 
-  const handlePost = async (data :IProjectsPost)=>{
-    const projectToPost = {
-        title: data.title,
-        description: data.description,
-        startDate: formatDate(data.startDate),
-        endDate: formatDate(data.startDate),
-    }
-    
+  const handlePost = async (data :IProjectsPost)=>{    
     await useProjectsService.postProjects('projects',data);
-    // propFunction();
+    propFunction();
     router.refresh();
   } 
 
@@ -83,7 +73,7 @@ const ProjectsForm:React.FC<IProjectsForm> = ({action, clientSelected, propFunct
 //     router.refresh();
 //   }
   
-//   const onSubmit = action === 'add' ? handlePost : handleEdit;
+const onSubmit = action === 'add' ? handlePost : '';
 
   return (
     <Form onSubmit={handleSubmit(handlePost)}>

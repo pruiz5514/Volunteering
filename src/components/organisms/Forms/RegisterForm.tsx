@@ -14,13 +14,13 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
-const MAX_FILE_SIZE = (102400*50000000); // 500KB
+const MAX_FILE_SIZE = (102400); // 500KB
 
 const validFileExtensions: { [key: string]: string[] } = {
   image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp']
 };
 
-const useRegisterUser = new RegisterService('/api');
+const useRegisterService = new RegisterService('/api');
 
 function isValidFileType(fileName: string | undefined, fileType: keyof typeof validFileExtensions): boolean {
   return (
@@ -60,6 +60,8 @@ const RegisterForm = () => {
     control,
     handleSubmit,
     // setError,
+    setValue,
+    getValues,
     formState: {errors}
   } = useForm<IUsersPost>({
     mode: "onChange",
@@ -71,21 +73,32 @@ const RegisterForm = () => {
 
   const handleSignUp = async (data:IUsersPost)=>{
     const formData = new FormData();
+    console.log(data);
+
+  
 
     formData.append('email', data.email);
     formData.append('password', data.password);
     formData.append('name', data.name);
     formData.append('role', data.role);
     
-    if (data.photo) {
-        formData.append("photo", data.photo) ;
-    };
+    if (getValues('photo')) {
+      formData.append("photo", getValues('photo')!) ;
+    }
+    
 
-    const response = await useRegisterUser.postClient('register', formData);
+
+    const response = await useRegisterService.postClient('register', formData);
     console.log(response);
     
     
   }
+
+  const onChange = (e: any)=> {
+    if(e.target.files[0]){
+      setValue('photo',e.target.files[0])
+    }
+  } 
   
 
   return (
@@ -123,13 +136,7 @@ const RegisterForm = () => {
             error={errors.role}
             control={control}              
         />
-        <FormFiled<IUsersPost>
-            type='file'
-            label='Foto de perfil'
-            name = 'photo'
-            error={errors.photo}
-            control={control}              
-        />
+        <input type="file" onChange={onChange} />
         
 
         <Button className='dark-button' type='submit'> Iniciar sesión</Button>

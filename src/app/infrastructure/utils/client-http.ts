@@ -23,10 +23,9 @@ export class HttpClient {
   }
 
   async delete(url: string) {
-    await fetch(`${this.baseUrl}/${url}`, {
+    const response = await fetch(`${this.baseUrl}/${url}`, {
       method: "DELETE",
     });
-
   }
 
   async post<T, B>(url:string, body: B): Promise<T> {

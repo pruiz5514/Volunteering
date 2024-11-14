@@ -3,6 +3,7 @@ import { HttpClient } from "../utils/client-http";
 import { IProjectsPost } from "@/app/core/application/dto/dashboard/projects/post-projects.dto";
 import { IProjectsPostResponse } from "@/app/core/application/dto/dashboard/projects/post-projects-response.dto";
 import { errorAlert, successAlert } from "../utils/alerts";
+import { IProjectsDeleteResponse } from "@/app/core/application/dto/dashboard/projects/delete-projects-response.dto";
 
 export class ProjectsService{
     private httpClient: HttpClient;
@@ -33,17 +34,15 @@ export class ProjectsService{
         }
     }
 
-    // async deleteService(url:string,id:string){
-    //     try{
-    //         const serviceToDelete = await this.httpClient.delete(`${url}/${id}`);
-    //         successAlert('Eliminado exitosamente');
-    //         return serviceToDelete;
-    //     } catch(error){
-    //         console.log(error);
-    //         errorAlert('No se pudo eleminar')
-    //         throw error;
-    //     }
-    // }
+    async deleteProject(url:string,id:number){
+        try{
+            const projectToDelete = await this.httpClient.delete(`${url}/${String(id)}`);
+            return projectToDelete;
+        } catch(error){
+            console.log(error);
+            throw error;
+        }
+    }
 
     // async findServiceById (url:string, id:string){
     //     try{
