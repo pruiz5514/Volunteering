@@ -1,5 +1,8 @@
-import { IProjectsResponse } from "@/app/core/application/dto/dashboard/get-projects-response.dto";
+import { IProjectsResponse } from "@/app/core/application/dto/dashboard/projects/get-projects-response.dto";
 import { HttpClient } from "../utils/client-http";
+import { IProjectsPost } from "@/app/core/application/dto/dashboard/projects/post-projects.dto";
+import { IProjectsPostResponse } from "@/app/core/application/dto/dashboard/projects/post-projects-response.dto";
+import { errorAlert, successAlert } from "../utils/alerts";
 
 export class ProjectsService{
     private httpClient: HttpClient;
@@ -18,16 +21,17 @@ export class ProjectsService{
         }
     }
 
-    // async postProjects(url:string, body:IServicesPost){
-    //     try{
-    //         const newService = await this.httpClient.post<IServicesPostResponse, IServicesPost>(url,body);
-    //         return newService;
-    //     }catch(error){
-    //         console.log(error);
-    //         errorAlert("No se pudo crear el servicio, intente luego")
-    //         throw error
-    //     }
-    // }
+    async postProjects(url:string, body:IProjectsPost){
+        try{
+            const newProject = await this.httpClient.post<IProjectsPostResponse, IProjectsPost>(url,body);
+            successAlert('Se creo el proyecto exitosamente');
+            return newProject;
+        }catch(error){
+            console.log(error);
+            errorAlert("No se pudo crear el servicio, intente luego")
+            throw error
+        }
+    }
 
     // async deleteService(url:string,id:string){
     //     try{

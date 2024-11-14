@@ -13,7 +13,7 @@ export default function PrivateLayout(
           <AsideContainer/>
         </div>
         <div className='private-container'>
-            <HeaderPrivate/>
+            
             {children}
         </div>
       </div>

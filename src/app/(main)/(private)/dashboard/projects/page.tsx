@@ -1,5 +1,6 @@
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { ProjectsService } from '@/app/infrastructure/services/projects.service'
+import HeaderPrivate from '@/components/organisms/HeaderPrivate/HeaderPrivate';
 import ProjectsTemplate from '@/components/template/dashboard/ProjectsTemplate/ProjectsTemplate'
 import { getServerSession } from 'next-auth';
 import React from 'react'

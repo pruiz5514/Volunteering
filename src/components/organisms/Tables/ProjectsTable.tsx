@@ -1,4 +1,4 @@
-import { IProjectsData } from "@/app/core/application/dto/dashboard/get-projects-response.dto"
+import { IProjectsData } from "@/app/core/application/dto/dashboard/projects/get-projects-response.dto"
 import Table from "@/components/atoms/Table/Table"
 import TableContaier from "@/components/atoms/Table/TableContainer"
 import Tbody from "@/components/atoms/Table/Tbody"
