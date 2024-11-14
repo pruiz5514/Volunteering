@@ -1,21 +1,30 @@
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { ProjectsService } from '@/app/infrastructure/services/projects.service'
-import HeaderPrivate from '@/components/organisms/HeaderPrivate/HeaderPrivate';
 import ProjectsTemplate from '@/components/template/dashboard/ProjectsTemplate/ProjectsTemplate'
 import { getServerSession } from 'next-auth';
 import React from 'react'
 
 const useProjectsService = new ProjectsService();
-export default async function page() {
+
+interface IProps {
+  searchParams:{
+    page: string;
+    size: string;
+    order?: string
+  }
+}
+
+export default async function page({searchParams}:IProps) {
+  const page = searchParams.page ? parseInt(searchParams.page) : 1;
+  const size = searchParams.size ? parseInt(searchParams.size) : 8;
 
   const session = await getServerSession(authOptions);
-  console.log(session?.user);
 
-  const projects = await useProjectsService.findAllProjects('projects')
+  const projects = await useProjectsService.findAllProjects(`projects?page=${page}&size=${size}`)
 
   return (
     <div>
-      <ProjectsTemplate projects={projects.data}/>
+      <ProjectsTemplate projects={projects}/>
     </div>
   )
 }

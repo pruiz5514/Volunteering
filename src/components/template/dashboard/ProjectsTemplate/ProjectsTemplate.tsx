@@ -2,11 +2,12 @@ import H3 from '@/components/atoms/H3/H3'
 import './ProjectsTemplate.scss'
 import Input from '@/components/atoms/Input/Input'
 import ProjectsTable from '@/components/organisms/Tables/ProjectsTable'
-import { IProjectsData } from '@/app/core/application/dto/dashboard/projects/get-projects-response.dto'
+import { IProjectsData, IProjectsResponse } from '@/app/core/application/dto/dashboard/projects/get-projects-response.dto'
 import HeaderPrivate from '@/components/organisms/HeaderPrivate/HeaderPrivate'
+import Pagination from '@/components/molecules/Pagination/Pagination'
 
 interface IProjectsTemplate {
-    projects : IProjectsData[];
+    projects : IProjectsResponse;
 }
 
 const ProjectsTemplate:React.FC<IProjectsTemplate> = ({projects}) => {
@@ -22,8 +23,8 @@ const ProjectsTemplate:React.FC<IProjectsTemplate> = ({projects}) => {
                         placeholder='Buscar proyectos'
                     />
                 </div>
-
-                <ProjectsTable projects={projects}/>
+                <ProjectsTable projects={projects.data}/>
+                <Pagination data={projects}/>
                 
             </div>
         </div>

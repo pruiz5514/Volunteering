@@ -9,7 +9,6 @@ import H1 from '@/components/atoms/H1/H1'
 import FormFiled from '@/components/molecules/common/FormField/FormField';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useRouter } from 'next/navigation';
-import { title } from 'process';
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'

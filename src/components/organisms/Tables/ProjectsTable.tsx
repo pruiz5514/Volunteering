@@ -15,7 +15,6 @@ interface IProjectsTable{
 
 const ProjectsTable:React.FC<IProjectsTable> = ({projects}) => { 
     
-    
   return (
     <TableContaier>
         <Table>
