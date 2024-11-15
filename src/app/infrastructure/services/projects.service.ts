@@ -56,4 +56,14 @@ export class ProjectsService{
 
         }
     }
+
+    async getProjectReport (url:string){
+        try{
+            const projectReport = await this.httpClient.getReport(url);
+            return projectReport;
+        } catch(error){
+            console.log(error);
+            throw error;
+        }
+    }
 }

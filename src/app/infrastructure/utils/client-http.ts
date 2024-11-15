@@ -22,6 +22,15 @@ export class HttpClient {
     return this.handleResponse(response);
   }
 
+  async getReport(url: string) {
+    const response = await fetch(`${this.baseUrl}/${url}`, {
+      method: "GET",
+      cache: "no-store"
+    });
+
+    return response;
+  }
+
   async delete(url: string) {
     const response = await fetch(`${this.baseUrl}/${url}`, {
       method: "DELETE",
@@ -85,9 +94,6 @@ export class HttpClient {
         headers['sortType'] = order
       }
     }
-    
-
-    console.log(headers);
     
     return headers
     
