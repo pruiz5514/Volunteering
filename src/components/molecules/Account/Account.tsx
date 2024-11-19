@@ -4,14 +4,13 @@ import './Account.scss'
 import { useSession } from "next-auth/react";
 
 const Account = () => {
-  const { data: session, status } = useSession();
-  console.log(session);
+  const { data: session } = useSession();
 
   let url 
   if(session?.user.photo){
     url = session.user.photo
   }else{
-    url = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcincodias.elpais.com%2Fsmartlife%2F2016%2F07%2F04%2Flifestyle%2F1467646262_522853.html&psig=AOvVaw334gXG_lY2R3rkBea-Y-Ag&ust=1731706292933000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKje8Obi3IkDFQAAAAAdAAAAABAE'
+    url = 'https://imagenes.elpais.com/resizer/v2/4UPKL26K5ZICHFC6UIAU5DDHWU.jpg?auth=393fdef15d621d403eec4dc5bc104e8ce874f3be8958f4d708d2ca856b646922&width=414'
   }
 
   return (

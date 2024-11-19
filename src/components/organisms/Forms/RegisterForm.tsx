@@ -7,6 +7,7 @@ import Button from '@/components/atoms/Button/Button'
 import Form from '@/components/atoms/Form/Form'
 import H1 from '@/components/atoms/H1/H1'
 import FormFiled from '@/components/molecules/common/FormField/FormField';
+import FormFiledSelect from '@/components/molecules/common/FormFieldSelect/FormFieldSelect';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -36,6 +37,7 @@ const PostUserSchema = yup.object()
             .required("El email del cliente es obligatorio"),
         password: yup
             .string()
+            .min(8, 'La contraseña debe tener minimo 8 caracteres')
             .required('La contreseña es obligatoria'),
         name: yup
             .string()
@@ -69,7 +71,7 @@ const RegisterForm = () => {
     resolver: yupResolver(PostUserSchema),
   })
 
-//   const router = useRouter();
+  const router = useRouter();
 
   const handleSignUp = async (data:IUsersPost)=>{
     const formData = new FormData();
@@ -85,10 +87,9 @@ const RegisterForm = () => {
     if (getValues('photo')) {
       formData.append("photo", getValues('photo')!) ;
     }
-    
-
 
     const response = await useRegisterService.postClient('register', formData);
+    router.push('/login')
     console.log(response);
     
     
@@ -129,13 +130,16 @@ const RegisterForm = () => {
             error={errors.name}
             control={control}              
         />
-        <FormFiled<IUsersPost>
-            type='text'
-            label='Rol'
-            name = 'role'
-            error={errors.role}
-            control={control}              
-        />
+        <FormFiledSelect
+          label='Rol'
+          name='role'
+          error={errors.role}
+          control={control}
+        >
+          <option value="" disabled selected>Seleccionar rol</option>
+          <option value="volunteer">Voluntario</option>
+          <option value="organizer">Organizador</option>
+        </FormFiledSelect>
         <input type="file" onChange={onChange} />
         
 

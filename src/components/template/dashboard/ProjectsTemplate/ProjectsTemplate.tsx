@@ -5,12 +5,16 @@ import ProjectsTable from '@/components/organisms/Tables/ProjectsTable'
 import { IProjectsData, IProjectsResponse } from '@/app/core/application/dto/dashboard/projects/get-projects-response.dto'
 import HeaderPrivate from '@/components/organisms/HeaderPrivate/HeaderPrivate'
 import Pagination from '@/components/molecules/Pagination/Pagination'
+import SearchInput from '@/components/molecules/SearchInput/SearchInput'
 
 interface IProjectsTemplate {
     projects : IProjectsResponse;
 }
 
 const ProjectsTemplate:React.FC<IProjectsTemplate> = ({projects}) => {
+    const handleChange = ()=> {
+
+    }
   return (
     <>
         <HeaderPrivate/>
@@ -18,11 +22,7 @@ const ProjectsTemplate:React.FC<IProjectsTemplate> = ({projects}) => {
             <div className='panel_projects-container'>
                 <H3>Listas de proyectos</H3>
 
-                <div className='input_search-container'>
-                    <Input
-                        placeholder='Buscar proyectos'
-                    />
-                </div>
+                <SearchInput/>
                 <ProjectsTable projects={projects.data}/>
                 <Pagination data={projects}/>
                 

@@ -1,3 +1,5 @@
+'use client'
+import './ProjectsTable.scss'
 import { IProjectsData } from "@/app/core/application/dto/dashboard/projects/get-projects-response.dto"
 import Table from "@/components/atoms/Table/Table"
 import TableContaier from "@/components/atoms/Table/TableContainer"
@@ -7,6 +9,7 @@ import Th from "@/components/atoms/Table/Th"
 import Thead from "@/components/atoms/Table/Thead"
 import Tr from "@/components/atoms/Table/Tr"
 import TdActions from "@/components/molecules/TdActions/TdActions"
+import { useSession } from 'next-auth/react'
 
 
 interface IProjectsTable{
@@ -14,7 +17,8 @@ interface IProjectsTable{
 }
 
 const ProjectsTable:React.FC<IProjectsTable> = ({projects}) => { 
-    
+    const { data: session } = useSession();
+
   return (
     <TableContaier>
         <Table>
@@ -26,7 +30,10 @@ const ProjectsTable:React.FC<IProjectsTable> = ({projects}) => {
                     <Th>Fecha de finalización</Th>
                     <Th>Estado</Th>
                     <Th>Organizador</Th>
-                    <Th>Acciones</Th>
+                    {session?.user.role === 'organizer' && (
+                            <Th>Acciones</Th>
+                    )}
+                    
             </Tr>
             </Thead>
             <Tbody>
@@ -36,9 +43,12 @@ const ProjectsTable:React.FC<IProjectsTable> = ({projects}) => {
                         <Td>{project.description}</Td>
                         <Td>{String(project.startDate)}</Td>
                         <Td>{String(project.endDate)}</Td>
-                        <Td>{project.isActive ? 'Activo' : 'Inactivo'}</Td>
+                        <Td> <span className='status'>{project.isActive ? 'Activo' : 'Inactivo'}</span></Td>
                         <Td>{project.organizer.name}</Td>
-                        <Td> <TdActions data={project}/> </Td>
+                        {session?.user.role === 'organizer' && (
+                            <Td> <TdActions data={project}/> </Td>
+                        )}
+                        
                     </Tr>
                 ))}
             </Tbody>

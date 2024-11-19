@@ -9,10 +9,12 @@ import Modal from '@/components/atoms/Modal/Modal'
 import ProjectsForm from '../Forms/ProjectsForm';
 import Account from '@/components/molecules/Account/Account';
 import { ProjectsService } from '@/app/infrastructure/services/projects.service';
+import { useSession } from 'next-auth/react';
 
 const useProjectsService = new ProjectsService(`${process.env.NEXT_PUBLIC_FRONT_HOST}/api`)
 
 const HeaderPrivate = () => {
+  const { data: session } = useSession();
 
   const [modal, setModal] = useState(false);
 
@@ -33,9 +35,15 @@ const HeaderPrivate = () => {
   }
 
   return (
+    
     <Header classname='header-private' leftSectionContent = {<h2 className='header_private_left-content'>Dashboard de proyectos</h2>}>
-          <li><Button className='dark-button' onClick={handleReport}><IoDocumentTextOutline /> Descargar reporte</Button></li>
-          <li><Button className='dark-button' onClick={()=>setModal(true)}><IoMdAddCircleOutline /> Nuevo Proyecto</Button></li>
+          {session?.user.role === 'organizer' && (
+            <>
+              <li><Button className='dark-button' onClick={handleReport}><IoDocumentTextOutline /> Descargar reporte</Button></li>
+              <li><Button className='dark-button' onClick={()=>setModal(true)}><IoMdAddCircleOutline /> Nuevo Proyecto</Button></li>
+            </>
+          )}
+          
           <li><Account/></li>
 
           {modal && 

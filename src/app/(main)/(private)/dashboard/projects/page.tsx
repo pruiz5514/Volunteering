@@ -11,18 +11,20 @@ interface IProps {
     page: string;
     size: string;
     order?: string
+    name:string;
   }
 }
 
 export default async function page({searchParams}:IProps) {
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
   const size = searchParams.size ? parseInt(searchParams.size) : 8;
+  const name = searchParams.name ? String(searchParams.name) : '';
 
   const session = await getServerSession(authOptions);
   console.log(session);
   
 
-  const projects = await useProjectsService.findAllProjects(`projects?page=${page}&size=${size}`)
+  const projects = await useProjectsService.findAllProjects(`projects?page=${page}&size=${size}&name=${name}`)
 
   return (
     <div>

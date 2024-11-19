@@ -1,6 +1,9 @@
 import { IUsersPost } from "@/app/core/application/dto/register/post-users.dto";
 import { HttpClient } from "../utils/client-http";
 import { IUserPostResponse } from "@/app/core/application/dto/register/post-user-response.dto";
+import { errorAlert } from "../utils/alerts";
+import { useRouter } from "next/navigation";
+
 
 export class RegisterService {
     private httpClient: HttpClient;
@@ -15,6 +18,7 @@ export class RegisterService {
             return newClient;
         }catch(error){
             console.log(error);
+            errorAlert('No se pudo crear usuario')
             throw error
         }
     }
