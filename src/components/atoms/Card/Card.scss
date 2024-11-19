@@ -1,0 +1,27 @@
+.card-container{
+    width: 340px;
+    height: 120px;
+    background-color: $white;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 8px;
+    box-shadow: $box-shadow;
+
+    .upper_part-card{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .icon-card{
+            font-size: 20px;
+        }
+    }
+
+    .info-card{
+        font-weight: bold;
+        font-size: 28px;
+    }
+}
