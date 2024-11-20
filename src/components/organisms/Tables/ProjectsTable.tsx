@@ -43,7 +43,7 @@ const ProjectsTable:React.FC<IProjectsTable> = ({projects}) => {
                         <Td>{project.description}</Td>
                         <Td>{String(project.startDate)}</Td>
                         <Td>{String(project.endDate)}</Td>
-                        <Td> <span className='status'>{project.isActive ? 'Activo' : 'Inactivo'}</span></Td>
+                        <Td> {project.isActive ? (<span className='active'>Activo</span>) : <span className='inactive'>Inactivo</span>}</Td>
                         <Td>{project.organizer.name}</Td>
                         {session?.user.role === 'organizer' && (
                             <Td> <TdActions data={project}/> </Td>

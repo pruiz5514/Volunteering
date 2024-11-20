@@ -3,9 +3,9 @@ import { HttpClient } from "../utils/client-http";
 import { IProjectsPost } from "@/app/core/application/dto/dashboard/projects/post-projects.dto";
 import { IProjectsPostResponse } from "@/app/core/application/dto/dashboard/projects/post-projects-response.dto";
 import { errorAlert, successAlert } from "../utils/alerts";
-import { IProjectsDeleteResponse } from "@/app/core/application/dto/dashboard/projects/delete-projects-response.dto";
+import { PProjects } from "@/app/core/application/ports/projects.port";
 
-export class ProjectsService{
+export class ProjectsService implements PProjects{
     private httpClient: HttpClient;
 
     constructor(baseUrl?: string){

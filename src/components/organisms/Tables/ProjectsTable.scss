@@ -1,6 +1,13 @@
-.status{
+.active{
     padding: 5px 10px;
     background-color: #dcfce7;
     color: #7a976d;
+    border-radius: 20px;
+}
+
+.inactive{
+    padding: 5px 10px;
+    background-color: #f8d7da;
+    color: #9b2d20;
     border-radius: 20px;
 }

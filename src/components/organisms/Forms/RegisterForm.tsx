@@ -88,7 +88,7 @@ const RegisterForm = () => {
       formData.append("photo", getValues('photo')!) ;
     }
 
-    const response = await useRegisterService.postClient('register', formData);
+    const response = await useRegisterService.postUser('register', formData);
     router.push('/login')
     console.log(response);
     
