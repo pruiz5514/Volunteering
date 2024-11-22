@@ -1,4 +1,4 @@
-## Getting Started
+## Volunteer Administrator
 Website for project and volunteer management 
 
 ## Technologies
