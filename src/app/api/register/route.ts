@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 
 
-const url = `https://communnityvolunteering-production.up.railway.app/api/v1/users`
+const url = `${process.env.NEXT_PUBLIC_BACK_HOST}/users`
 
 
 export async function POST (request: Request){

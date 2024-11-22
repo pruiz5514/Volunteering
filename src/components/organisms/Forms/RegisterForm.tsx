@@ -1,6 +1,5 @@
 "use client";
 
-import { ILoginRequest } from '@/app/core/application/dto/auth/login-request.dto';
 import { IUsersPost } from '@/app/core/application/dto/register/post-users.dto';
 import { RegisterService } from '@/app/infrastructure/services/register.service';
 import Button from '@/components/atoms/Button/Button'
@@ -9,26 +8,25 @@ import H1 from '@/components/atoms/H1/H1'
 import FormFiled from '@/components/molecules/common/FormField/FormField';
 import FormFiledSelect from '@/components/molecules/common/FormFieldSelect/FormFieldSelect';
 import { yupResolver } from '@hookform/resolvers/yup'
-import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
-const MAX_FILE_SIZE = (102400); // 500KB
+// const MAX_FILE_SIZE = (102400); // 500KB
 
-const validFileExtensions: { [key: string]: string[] } = {
-  image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp']
-};
+// const validFileExtensions: { [key: string]: string[] } = {
+//   image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp']
+// };
 
 const useRegisterService = new RegisterService('/api');
 
-function isValidFileType(fileName: string | undefined, fileType: keyof typeof validFileExtensions): boolean {
-  return (
-    !!fileName &&
-    validFileExtensions[fileType].includes(fileName.split('.').pop() || '')
-  );
-}
+// function isValidFileType(fileName: string | undefined, fileType: keyof typeof validFileExtensions): boolean {
+//   return (
+//     !!fileName &&
+//     validFileExtensions[fileType].includes(fileName.split('.').pop() || '')
+//   );
+// }
 
 const PostUserSchema = yup.object()
     .shape({
@@ -95,8 +93,8 @@ const RegisterForm = () => {
     
   }
 
-  const onChange = (e: any)=> {
-    if(e.target.files[0]){
+  const onChange =(e: React.ChangeEvent<HTMLInputElement>)=> {
+    if (e.target.files && e.target.files[0]) {
       setValue('photo',e.target.files[0])
     }
   } 

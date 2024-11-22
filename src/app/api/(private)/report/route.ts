@@ -1,6 +1,7 @@
+import { authOptions } from "@/app/infrastructure/utils/nextAuthConfig";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "../../auth/[...nextauth]/route";
+
 
 const url = `${process.env.NEXT_PUBLIC_BACK_HOST}/projects/report/download`
 

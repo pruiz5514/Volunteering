@@ -1,6 +1,5 @@
 "use client";
 
-import { IProjectsData } from '@/app/core/application/dto/dashboard/projects/get-projects-response.dto';
 import { IProjectsPost } from '@/app/core/application/dto/dashboard/projects/post-projects.dto';
 import { ProjectsService } from '@/app/infrastructure/services/projects.service';
 import Button from '@/components/atoms/Button/Button'

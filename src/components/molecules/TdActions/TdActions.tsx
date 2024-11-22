@@ -1,7 +1,6 @@
 'use client';
 
 import './TdActions.scss';
-import { GoPencil } from 'react-icons/go'
 import { useState } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import { IProjectsData } from '@/app/core/application/dto/dashboard/projects/get-projects-response.dto';

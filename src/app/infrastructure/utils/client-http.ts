@@ -1,13 +1,13 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
 
-const defaultBaseUrl = 'https://communnityvolunteering-production.up.railway.app/api/v1';
+import { getServerSession } from "next-auth";
+import { authOptions } from "./nextAuthConfig";
+
+const defaultBaseUrl = process.env.NEXT_PUBLIC_BACK_HOST ?? '';
 
 export class HttpClient {
   private baseUrl: string;
 
   constructor(baseUrl?: string) {
-    if(defaultBaseUrl){}
     this.baseUrl = baseUrl || defaultBaseUrl;
   }
 
@@ -32,7 +32,7 @@ export class HttpClient {
   }
 
   async delete(url: string) {
-    const response = await fetch(`${this.baseUrl}/${url}`, {
+    await fetch(`${this.baseUrl}/${url}`, {
       method: "DELETE",
     });
   }

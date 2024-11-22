@@ -1,6 +1,5 @@
 'use client'
 import './AsideLeft.scss';
-import Button from '@/components/atoms/Button/Button'
 import { IoClose } from 'react-icons/io5'
 import { signOut } from "next-auth/react"
 import { MdLogout } from 'react-icons/md';

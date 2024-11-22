@@ -1,7 +1,7 @@
 import './privateLayout.scss'
 import AuthGuard from './guard/AuthGuard'
 import AsideContainer from '@/components/organisms/AsideContainer/AsideContainer'
-import HeaderPrivate from '@/components/organisms/HeaderPrivate/HeaderPrivate'
+
 
 export default function PrivateLayout(
     { children }: { children: React.ReactNode}
@@ -13,7 +13,6 @@ export default function PrivateLayout(
           <AsideContainer/>
         </div>
         <div className='private-container'>
-            
             {children}
         </div>
       </div>

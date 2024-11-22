@@ -1,7 +1,6 @@
 "use client";
 
 import { ILoginRequest } from '@/app/core/application/dto/auth/login-request.dto';
-import { RegisterService } from '@/app/infrastructure/services/register.service';
 import Button from '@/components/atoms/Button/Button'
 import Form from '@/components/atoms/Form/Form'
 import H1 from '@/components/atoms/H1/H1'
@@ -61,7 +60,7 @@ const LoginForm = () => {
   return (
     <Form onSubmit={handleSubmit(handleLogin)}>
         <H1> Iniciar sesión</H1>
-        <FormFiled<any>
+        <FormFiled<ILoginRequest>
             type='text'
             label='Correo electronico'
             name = 'email'
@@ -69,7 +68,7 @@ const LoginForm = () => {
             error={errors.email}
             control={control}              
         />
-       <FormFiled<any>
+       <FormFiled<ILoginRequest>
             type='password'
             label='Contraseña'
             name = 'password'
