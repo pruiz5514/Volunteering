@@ -1,6 +1,7 @@
 import Button from '@/components/atoms/Button/Button';
 import './home.scss'
 import Header from "@/components/organisms/Header/Header";
+import Link from 'next/link';
 
 export default function Home() {
     return (
@@ -17,10 +18,10 @@ export default function Home() {
 
             <div className="home_buttons-container">
               <div>
-                <Button className='dark-button'>Explorar proyectos</Button>
+                <Link href='./login'><Button className='dark-button'>Explorar proyectos</Button></Link>
               </div>
               <div>
-                <Button className='light-button'>Comenzar como organizador</Button>
+                <Link href='/login'><Button className='light-button'>Comenzar como organizador</Button></Link>
               </div>                
             </div>
           </div>
